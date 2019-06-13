@@ -1,0 +1,8 @@
+
+
+Velocidad angular = ((Posicion_final-Posicion_inicial)/.064);
+    Velocidad lineal = Velocidad_Aangular*(0.075);.........rad/s
+    Rpm = ((Velocidad_Angular*60)/(2*PI)); convertio rad/s to rpm
+
+I used a 300 cm/s that is a equivalent to 3m/s, for de dimension in the virtual 
+   

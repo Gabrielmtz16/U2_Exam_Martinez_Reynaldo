@@ -1,0 +1,178 @@
+#VRML_SIM R2019a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.998855576179297 -0.0467734971701377 -0.009988888726968806 5.861920985411951
+  position 0.2400802379987658 1.321650344235092 2.8960624068236687
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 20 50
+}
+Robot {
+  translation -0.9374918251686826 0.060362195634547464 -0.06320937348381407
+  rotation 0.10164032154647262 -0.9130636003275943 0.3949482330543344 -0.05030398068868084
+  children [
+    Group {
+      children [
+        BallJoint {
+          jointParameters BallJointParameters {
+            anchor 0.1 -0.060000000000000005 0
+          }
+          endPoint Solid {
+            translation 0.10002829672384361 -0.05991558146445872 0.00019062589727393553
+            rotation 0.8937907179189959 -0.26137764791158924 0.36444461545487405 1.9395207382516162
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF G_shpere Sphere {
+                  radius 0.025
+                }
+              }
+            ]
+            name "solid(1)"
+            boundingObject USE G_shpere
+            physics Physics {
+            }
+          }
+        }
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.25 0.07 0.1
+          }
+        }
+      ]
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position -8.259800590039228
+        axis 0 0 1
+        anchor -0.05 0 0.06
+      }
+      device [
+        RotationalMotor {
+          name "motor_right"
+          maxVelocity 300
+        }
+        PositionSensor {
+          name "wheel_right"
+          resolution 0.9817
+        }
+      ]
+      endPoint Solid {
+        translation -0.050169088599869474 -0.00033173864074308277 0.060011839541643214
+        rotation -0.42223682134066143 0.6409735545931691 0.6409906153886592 3.94064191041279
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+            }
+            geometry DEF G_WHEEL2 Cylinder {
+              height 0.02
+              radius 0.075
+            }
+          }
+        ]
+        boundingObject USE G_WHEEL2
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position -1.2785635392879184
+        axis 0 0 1
+        anchor -0.05 0 -0.06
+      }
+      device [
+        PositionSensor {
+          name "wheel_left"
+        }
+        RotationalMotor {
+          name "motor_left"
+          maxVelocity 300
+          maxTorque 5
+        }
+      ]
+      endPoint Solid {
+        translation -0.05012038971918263 0.00033516633794723234 -0.06000893813275021
+        rotation 0.6891846449282003 -0.5123607052188822 -0.5123583052345304 1.9347307113209502
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+            }
+            geometry DEF G_WHEEL Cylinder {
+              height 0.02
+              radius 0.075
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE G_WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DistanceSensor {
+      translation 0.12999999999999998 0 0
+      rotation 0 0 1 0.1308996938995747
+      children [
+        Shape {
+          geometry Box {
+            size 0.03 0.03 0.03
+          }
+        }
+      ]
+      name "distance_sensor"
+      lookupTable [
+        0 0 0
+        0.02 0 0
+        5 1023 0
+      ]
+      resolution 0.3
+    }
+  ]
+  boundingObject DEF G_BODY Box {
+    size 0.25 0.07 0.1
+  }
+  physics Physics {
+    density -1
+    mass 50
+  }
+  controller "U2_Exam_Martinez_Reynaldo"
+}
+Solid {
+  translation 1.2400000000000002 0.07000000000000002 0
+  children [
+    Shape {
+      appearance RedBricks {
+      }
+      geometry DEF WALL Box {
+        size 0.1 0.2 0.4
+      }
+    }
+  ]
+  boundingObject USE WALL
+}
+Solid {
+  children [
+    Shape {
+      geometry Box {
+        size 2 0.1 0.1
+      }
+    }
+  ]
+  name "solid(1)"
+}
